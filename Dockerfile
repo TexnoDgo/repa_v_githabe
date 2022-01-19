@@ -1,4 +1,5 @@
 ARG apach_user_pass
+ENV apach_user_pass ${apach_user_pass}
 FROM ubuntu:20.04
 RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && echo $CONTAINER_TIMEZONE > /etc/timezone
 RUN apt-get update && \
