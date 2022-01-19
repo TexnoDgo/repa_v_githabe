@@ -32,11 +32,11 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
-          build-args: |
-            ARG1=${{ secrets.APACHE_USER_PASS }}
           context: .
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/apache2-image:latest
+          build-args: apach_user_pass=${{ secrets.APACHE_USER_PASS }}
+          
 
           
       
