@@ -25,7 +25,7 @@ jobs:
       run: docker build . --file Dockerfile --tag apache-ubuntu-image:$(date +%s)
     
     - name: Push image
-      run: docker push apache2-image
+      run: docker push texnodgo/apache2-image:tagv1
         
     
       
