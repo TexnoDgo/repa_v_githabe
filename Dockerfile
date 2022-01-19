@@ -1,4 +1,4 @@
-ENV pass=${secrets.APACHE_USER_PASS}
+ENV pass=ARG1
 FROM ubuntu:20.04
 RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && echo $CONTAINER_TIMEZONE > /etc/timezone
 RUN apt-get update && \
