@@ -1,11 +1,10 @@
-ENV pass=ARG1
 FROM ubuntu:20.04
 RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && echo $CONTAINER_TIMEZONE > /etc/timezone
 RUN apt-get update && \
     apt-get install -y tzdata apache2 apache2-utils whois  && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
-    htpasswd -cb /etc/apache2/.htpasswd user1 $pass
+    htpasswd -cb /etc/apache2/.htpasswd user1 $ARG1
 COPY index.html /var/www/html/
 COPY 000-default.conf /etc/apache2/sites-enabled/
 EXPOSE 80
