@@ -68,11 +68,7 @@ resource "aws_security_group" "my_webserver_sg" {
   }
 }
 
-resource "aws_eip" "myEIP" {
-  vpc = true
-}
-
 resource "aws_eip_association" "eip_assoc" {
   instance_id   = aws_instance.Web_Ubuntu.id
-  allocation_id = aws_eip.myEIP.id
+  allocation_id = eipalloc-0c49fdfe9affb3dd3
 }
