@@ -5,7 +5,7 @@ provider "aws" {
 resource "aws_instance" "Web_Ubuntu" {
   ami                    = "ami-0d527b8c289b4af7f"
   instance_type          = "t2.micro"
-  vpc_security_group_ids = [sg-00ce18872e2d42dd3]
+  vpc_security_group_ids = [aws_security_group.my_webserver_sg.id]
   user_data              = <<EOF
 #!/bin/bash
 # Update system
@@ -34,45 +34,45 @@ EOF
 
 }
 
-#resource "aws_security_group" "my_webserver_sg" {
-#  name        = "my_webserver_sg"
-#  description = "Allow TLS inbound traffic"
+resource "aws_security_group" "my_webserver_sg" {
+  name        = "my_webserver_sg"
+  description = "Allow TLS inbound traffic"
 
-#  ingress { # приходящий трафик
-#    from_port   = 80
-#    to_port     = 80
-#    protocol    = "tcp"
-#    cidr_blocks = ["0.0.0.0/0"]
-#  }
+  ingress { # приходящий трафик
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-#  ingress { # приходящий трафик
-#    from_port   = 443
-#    to_port     = 443
-#    protocol    = "tcp"
-#    cidr_blocks = ["0.0.0.0/0"]
-#  }
+  ingress { # приходящий трафик
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-#  ingress { # приходящий трафик
-#    from_port   = 22
-#    to_port     = 22
-#    protocol    = "tcp"
-#    cidr_blocks = ["0.0.0.0/0"]
-#  }
+  ingress { # приходящий трафик
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-#  egress { # уходящий трафик
-#    from_port   = 0
-#    to_port     = 0
-#    protocol    = "-1"
-#    cidr_blocks = ["0.0.0.0/0"]
+  egress { # уходящий трафик
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
 
-#  }
-# }
+  }
+}
 
 #resource "aws_eip_association" "eip_assoc" {
 #  instance_id   = aws_instance.Web_Ubuntu.id
 #  allocation_id = eipalloc-0c49fdfe9affb3dd3
 #}
-#
+
 
 terraform {
   backend "s3" {
