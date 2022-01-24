@@ -66,7 +66,7 @@ EOF
 #    cidr_blocks = ["0.0.0.0/0"]
 
 #  }
-}
+#}
 
 #resource "aws_eip_association" "eip_assoc" {
 #  instance_id   = aws_instance.Web_Ubuntu.id
