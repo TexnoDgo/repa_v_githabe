@@ -1,6 +1,6 @@
 #!/bin/bash
 # Export variables
-export last_version_ubuntu
+#export last_version_ubuntu
 # Update system
 sudo apt update
 # Install docker
