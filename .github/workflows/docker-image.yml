@@ -58,29 +58,24 @@ jobs:
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v1
       
-    #- name: Terraform Init
-    #  id: init
-    #  run: terraform init
-
-    #- name: Terraform Plan
-    #  id: plan
-    #  run: terraform plan
-
-    #- name: Terraform Apply
-    #  id: apply
-    #  run: terraform apply --auto-approve
     - name: Terraform Init
-      uses: hashicorp/terraform-github-actions/init@v0.4.0
-      env: 
-        ubuntu_latest_version: ${{ steps.get_version.outputs.VERSION }}
-    
-    - name: Terraform Validate
-      uses: hashicorp/terraform-github-actions/validate@v0.3.7
-      
-    - name: Terraform Apply
-      uses: hashicorp/terraform-github-actions/apply@v0.4.0
+      id: init
+      run: terraform init
       env:
         ubuntu_latest_version: ${{ steps.get_version.outputs.VERSION }}
+
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan
+      env:
+        ubuntu_latest_version: ${{ steps.get_version.outputs.VERSION }}
+
+    - name: Terraform Apply
+      id: apply
+      run: terraform apply --auto-approve
+      env:
+        ubuntu_latest_version: ${{ steps.get_version.outputs.VERSION }}
+
       
 
           
