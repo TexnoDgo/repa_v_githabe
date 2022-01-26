@@ -62,19 +62,19 @@ jobs:
       id: init
       run: terraform init
       env:
-        ubuntu_latest_version: ${{ steps.get_version.outputs.VERSION }}
+        TF_VAR_ubuntu_latest_version: ${{ steps.get_version.outputs.VERSION }}
 
     - name: Terraform Plan
       id: plan
       run: terraform plan
       env:
-        ubuntu_latest_version: ${{ steps.get_version.outputs.VERSION }}
+        TF_VAR_ubuntu_latest_version: ${{ steps.get_version.outputs.VERSION }}
 
     - name: Terraform Apply
       id: apply
       run: terraform apply --auto-approve
       env:
-        ubuntu_latest_version: ${{ steps.get_version.outputs.VERSION }}
+        TF_VAR_ubuntu_latest_version: ${{ steps.get_version.outputs.VERSION }}
 
       
 
