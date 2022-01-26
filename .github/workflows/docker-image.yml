@@ -68,6 +68,12 @@ jobs:
       id: outputvar2
       run: echo ${{ steps.get_version.outputs.VERSION }}
       
+    - name: Var to log
+      uses: actions/github-script@v1
+      with:
+        script: |
+          console.log('${{ steps.get_version.outputs.VERSION }}')
+      
     - name: Use script
       id: usescript
       run: ./test_script.sh
