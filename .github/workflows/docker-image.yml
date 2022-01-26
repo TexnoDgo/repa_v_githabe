@@ -60,17 +60,13 @@ jobs:
     #- name: Terraform Apply
     #  id: apply
     #  run: terraform apply --auto-approve
-    - name: Output var
-      id: outputvar
-      run: echo ${{ steps.meta.outputs.tags }}
-    
-    - name: Create var
-      id: createvar
-      run: apach_user_pass=${{ steps.meta.outputs.tags }}
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
       
     - name: Output var2
       id: outputvar2
-      run: echo $apach_user_pass
+      run: echo ${{ steps.get_version.outputs.VERSION }}
           
 
           
