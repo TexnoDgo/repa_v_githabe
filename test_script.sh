@@ -1,3 +1,3 @@
 #!/bin/bash
-echo ${{pv}}
+echo ${{last_version_ubuntu}}
 
