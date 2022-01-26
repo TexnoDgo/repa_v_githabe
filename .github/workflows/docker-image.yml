@@ -37,6 +37,14 @@ jobs:
       with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+    - name: Get tag
+      run: |
+        echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+        echo ${{ steps.get_version.outputs.VERSION }}
+        last_version_ubuntu=${{ steps.get_version.outputs.VERSION }}
+        echo $last_version_ubuntu
+        
+        
           
     #- name: Build and push
     #  uses: docker/build-push-action@v2
@@ -60,22 +68,9 @@ jobs:
     #- name: Terraform Apply
     #  id: apply
     #  run: terraform apply --auto-approve
-    - name: Get the version
-      id: get_version
-      run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+
       
-    - name: Output var2
-      id: outputvar2
-      run: echo ${{ steps.get_version.outputs.VERSION }}
-      
-    - name: Var to log
-      uses: actions/github-script@v1
-      with:
-        build-args: pv=${{ steps.get_version.outputs.VERSION }}
-      
-    - name: Use script
-      id: usescript
-      run: ./test_script.sh
+
           
 
           
