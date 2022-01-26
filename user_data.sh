@@ -1,4 +1,6 @@
 #!/bin/bash
+# Export variables
+export last_version_ubuntu
 # Update system
 sudo apt update
 # Install docker
@@ -12,6 +14,6 @@ sudo apt install docker-ce -y
 sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 # Docker pull image
-docker pull texnodgo/apache2-image
+docker pull texnodgo/apache2-image:$last_version_ubuntu
 # Docker run
 sudo docker run -d -p 80:80 texnodgo/apache2-image:latest
