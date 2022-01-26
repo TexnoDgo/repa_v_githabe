@@ -38,28 +38,35 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
           
-    - name: Build and push
-      uses: docker/build-push-action@v2
-      with:
-          context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          build-args: apach_user_pass=${{ secrets.APACHE_USER_PASS }}
+    #- name: Build and push
+    #  uses: docker/build-push-action@v2
+    #  with:
+    #      context: .
+    #      push: true
+    #      tags: ${{ steps.meta.outputs.tags }}
+    #      build-args: apach_user_pass=${{ secrets.APACHE_USER_PASS }}
     
-    - name: Set up Terraform
-      uses: hashicorp/setup-terraform@v1
+    #- name: Set up Terraform
+    #  uses: hashicorp/setup-terraform@v1
       
-    - name: Terraform Init
-      id: init
-      run: terraform init
+    #- name: Terraform Init
+    #  id: init
+    #  run: terraform init
 
-    - name: Terraform Plan
-      id: plan
-      run: terraform plan
+    #- name: Terraform Plan
+    #  id: plan
+    #  run: terraform plan
 
-    - name: Terraform Apply
-      id: apply
-      run: terraform apply --auto-approve
+    #- name: Terraform Apply
+    #  id: apply
+    #  run: terraform apply --auto-approve
+    - name: Create var
+      id: createvar
+      run: apach_user_pass=${{ steps.meta.outputs.tags }}
+      
+    - name: Output var
+      id: outputvar
+      run: echo $apach_user_pass
           
 
           
