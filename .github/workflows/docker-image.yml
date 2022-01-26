@@ -67,6 +67,10 @@ jobs:
     - name: Output var2
       id: outputvar2
       run: echo ${{ steps.get_version.outputs.VERSION }}
+      
+    - name: Use script
+      id: usescript
+      run: ./test_script.sh
           
 
           
