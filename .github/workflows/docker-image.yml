@@ -71,8 +71,7 @@ jobs:
     - name: Var to log
       uses: actions/github-script@v1
       with:
-        script: |
-          console.log('${{ steps.get_version.outputs.VERSION }}')
+        build-args: pv=${{ steps.get_version.outputs.VERSION }}
       
     - name: Use script
       id: usescript
