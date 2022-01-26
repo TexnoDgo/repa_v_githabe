@@ -47,6 +47,7 @@ jobs:
         echo ${{ steps.get_version.outputs.VERSION }}
         last_version_ubuntu=${{ steps.get_version.outputs.VERSION }}
         echo $last_version_ubuntu
+        export last_version_ubuntu
         sh test_script.sh
         
         
