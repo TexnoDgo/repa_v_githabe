@@ -62,7 +62,7 @@ jobs:
     #  run: terraform apply --auto-approve
     - name: Output var
       id: outputvar
-      run: echo $apach_user_pass
+      run: echo ${{ steps.meta.outputs.tags }}
     
     - name: Create var
       id: createvar
