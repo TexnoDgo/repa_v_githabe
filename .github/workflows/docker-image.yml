@@ -46,33 +46,29 @@ jobs:
       run: |
         echo ${{ steps.get_version.outputs.VERSION }}
         last_version_ubuntu=${{ steps.get_version.outputs.VERSION }}
-        echo $last_version_ubuntu
-        sh test_script.sh
-        
-        
-          
-    #- name: Build and push
-    #  uses: docker/build-push-action@v2
-    #  with:
-    #      context: .
-    #      push: true
-    #      tags: ${{ steps.meta.outputs.tags }}
-    #      build-args: apach_user_pass=${{ secrets.APACHE_USER_PASS }}
+
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          build-args: apach_user_pass=${{ secrets.APACHE_USER_PASS }}
     
-    #- name: Set up Terraform
-    #  uses: hashicorp/setup-terraform@v1
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v1
       
-    #- name: Terraform Init
-    #  id: init
-    #  run: terraform init
+    - name: Terraform Init
+      id: init
+      run: terraform init
 
-    #- name: Terraform Plan
-    #  id: plan
-    #  run: terraform plan
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan
 
-    #- name: Terraform Apply
-    #  id: apply
-    #  run: terraform apply --auto-approve
+    - name: Terraform Apply
+      id: apply
+      run: terraform apply --auto-approve
 
       
 
