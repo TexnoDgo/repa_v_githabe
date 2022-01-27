@@ -61,9 +61,12 @@ resource "aws_instance" "Web_Ubuntu" {
   ami                    = data.aws_ami.latest_ubuntu.id
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.my_webserver_sg.id]
-  user_data              = file("user_data.sh")
+  #user_data              = file("user_data.sh")
 #  user_data_base64       = "${data.template_cloudinit_config.config.rendered}"
-
+   user_data		 = <<EOF
+#!/bin/bash
+sudo echo var.latest_ubuntu_version > /home/ubuntu/info.txt
+EOF
 
   tags = {
     Name  = "Ubuntu_Web_Server"
