@@ -40,13 +40,13 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
 
-    #- name: Build and push
-    #  uses: docker/build-push-action@v2
-    #  with:
-    #      context: .
-    #      push: true
-    #      tags: ${{ steps.meta.outputs.tags }}
-    #      build-args: apach_user_pass=${{ secrets.APACHE_USER_PASS }}
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          build-args: apach_user_pass=${{ secrets.APACHE_USER_PASS }}
           
     - name: Get tag
       id: get_version
