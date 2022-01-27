@@ -69,13 +69,13 @@ jobs:
       id: plan
       run: |
         last_version_ubuntu=${{ steps.get_version.outputs.VERSION }}
-        terraform plan -var 'latest_ubuntu_version=$last_version_ubuntu'
+        terraform plan -var 'latest_ubuntu_version=${{last_version_ubuntu}}'
 
     - name: Terraform Apply
       id: apply
       run: |
         last_version_ubuntu=${{ steps.get_version.outputs.VERSION }}
-        terraform apply -var 'latest_ubuntu_version=$last_version_ubuntu' --auto-approve
+        terraform apply -var 'latest_ubuntu_version=${{last_version_ubuntu}}' --auto-approve
 
 
       
