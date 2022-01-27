@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "SOME_ADDRESS = ${some_address}" > /home/ubuntu/
+sudo echo "${some_address}" > /home/ubuntu/info.txt
