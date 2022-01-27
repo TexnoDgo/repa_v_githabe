@@ -22,4 +22,4 @@ export last_version_ubuntu
 #echo "$last_version_ubuntu"
 #EOF
 
-sudo echo "$last_version_ubuntu" > ~/info.txt
+sudo echo "$last_version_ubuntu" > /home/ubuntu/info.txt
