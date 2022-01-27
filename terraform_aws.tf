@@ -18,42 +18,42 @@ data "aws_ami" "latest_ubuntu" {
 }
 
 # Output last version  ubuntu ami
-output "test" {
-  value = data.aws_ami.latest_ubuntu
-}
+#output "test" {
+#  value = data.aws_ami.latest_ubuntu
+#}
 
 # Render a part using a `template_file`
-data "template_file" "script" {
-  template = "${file("${path.module}/init.tpl")}"
+#data "template_file" "script" {
+#  template = "${file("${path.module}/init.tpl")}"
 
-  vars = {
-    consul_address = "${aws_instance.consul.private_ip}"
-  }
-}
+#  vars = {
+#    consul_address = "${aws_instance.consul.private_ip}"
+#  }
+#}
 
 # Render a multi-part cloud-init config making use of the part
 # above, and other source files
-data "template_cloudinit_config" "config" {
-  gzip          = true
-  base64_encode = true
+#data "template_cloudinit_config" "config" {
+#  gzip          = true
+#  base64_encode = true
 
-  # Main cloud-config configuration file.
-  part {
-    filename     = "init.cfg"
-    content_type = "text/cloud-config"
-    content      = "${data.template_file.script.rendered}"
-  }
-
-  part {
-    content_type = "text/x-shellscript"
-    content      = "baz"
-  }
-
-  part {
-    content_type = "text/x-shellscript"
-    content      = "ffbaz"
-  }
-}
+# Main cloud-config configuration file.
+#  part {
+#    filename     = "init.cfg"
+#    content_type = "text/cloud-config"
+#    content      = "${data.template_file.script.rendered}"
+#  }
+#
+#  part {
+#    content_type = "text/x-shellscript"
+#    content      = "baz"
+#  }
+#
+#  part {
+#    content_type = "text/x-shellscript"
+#    content      = "ffbaz"
+#  }
+#}
 
 
 # Create Instance
@@ -61,8 +61,8 @@ resource "aws_instance" "Web_Ubuntu" {
   ami                    = data.aws_ami.latest_ubuntu.id
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.my_webserver_sg.id]
-  #user_data              = file("user_data.sh")
-  user_data_base64       = "${data.template_cloudinit_config.config.rendered}"
+  user_data              = file("user_data.sh")
+#  user_data_base64       = "${data.template_cloudinit_config.config.rendered}"
 
 
   tags = {
