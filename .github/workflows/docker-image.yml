@@ -57,6 +57,12 @@ jobs:
       run: |
         echo ${{ steps.get_version.outputs.VERSION }}
         last_version_ubuntu=${{ steps.get_version.outputs.VERSION }}
+      
+    - name: Output TAG
+      run: |
+        echo "last_version_ubuntu:$last_version_ubuntu"
+        echo "last_version_ubuntu:${last_version_ubuntu}"
+        echo "last_version_ubuntu:${{last_version_ubuntu}}"
     
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v1
@@ -67,11 +73,11 @@ jobs:
 
     - name: Terraform Plan
       id: plan
-      run: terraform plan -var 'latest_ubuntu_version=$last_version_ubuntu'
+      run: terraform plan -var 'latest_ubuntu_version=${{last_version_ubuntu}}'
 
     - name: Terraform Apply
       id: apply
-      run: terraform apply -var 'latest_ubuntu_version=$last_version_ubuntu' --auto-approve
+      run: terraform apply -var 'latest_ubuntu_version=${{last_version_ubuntu}}' --auto-approve
 
 
       
