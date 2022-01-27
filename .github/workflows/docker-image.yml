@@ -71,7 +71,7 @@ jobs:
 
     - name: Terraform Apply
       id: apply
-      run: terraform apply --auto-approve
+      run: terraform apply -var 'latest_ubuntu_version=$last_version_ubuntu' --auto-approve
 
 
       
