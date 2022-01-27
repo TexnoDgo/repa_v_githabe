@@ -17,44 +17,6 @@ data "aws_ami" "latest_ubuntu" {
   }
 }
 
-# Output last version  ubuntu ami
-#output "test" {
-#  value = data.aws_ami.latest_ubuntu
-#}
-
-# Render a part using a `template_file`
-#data "template_file" "script" {
-#  template = "${file("${path.module}/init.tpl")}"
-
-#  vars = {
-#    consul_address = "${aws_instance.consul.private_ip}"
-#  }
-#}
-
-# Render a multi-part cloud-init config making use of the part
-# above, and other source files
-#data "template_cloudinit_config" "config" {
-#  gzip          = true
-#  base64_encode = true
-
-# Main cloud-config configuration file.
-#  part {
-#    filename     = "init.cfg"
-#    content_type = "text/cloud-config"
-#    content      = "${data.template_file.script.rendered}"
-#  }
-#
-#  part {
-#    content_type = "text/x-shellscript"
-#    content      = "baz"
-#  }
-#
-#  part {
-#    content_type = "text/x-shellscript"
-#    content      = "ffbaz"
-#  }
-#}
-
 # Create tempfile
 data "template_file" "init" {
   template = "${file("router-init.sh.tpl")}"
@@ -116,10 +78,10 @@ resource "aws_security_group" "my_webserver_sg" {
   }
 }
 
-#resource "aws_eip_association" "eip_assoc" {
-#  instance_id   = aws_instance.Web_Ubuntu.id
-#  allocation_id = eipalloc-0c49fdfe9affb3dd3
-#}
+resource "aws_eip_association" "eip_assoc" {
+  instance_id   = aws_instance.Web_Ubuntu.id
+  allocation_id = eipalloc-0f490853d4a6dff4d
+}
 
 # Save terraform backup to S3 backet
 terraform {
