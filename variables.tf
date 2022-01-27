@@ -1,4 +1,4 @@
 variable "latest_ubuntu_version" {
 	type = string
-	default = "000"
+	default = "latest"
 }
