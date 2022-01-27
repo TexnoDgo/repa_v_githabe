@@ -62,7 +62,7 @@ resource "aws_instance" "Web_Ubuntu" {
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.my_webserver_sg.id]
   #user_data              = file("user_data.sh")
-  user_data               = user_data_base64 = "${data.template_cloudinit_config.config.rendered}"
+  user_data_base64       = "${data.template_cloudinit_config.config.rendered}"
 
 
   tags = {
